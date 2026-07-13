@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>NovaCart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!--  NAVBAR START -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-lg py-2">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+
+            <img th:src="@{/img/logo/novacart-logo.png}"
+                 alt="NovaCart Logo"
+                 width="45"
+                 height="45"
+                 class="me-2">
+            <span class="fw-bold fs-3 text-white">NovaCart</span>
+
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"
+             id="navbarSupportedContent">
+            <!-- Left Menu -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold px-3" href="/">
+                        <i class="fa-solid fa-house me-1"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold px-3" href="/products">Product</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/products">
+                                All Products
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li th:each="c:${categories}">
+                            <a class="dropdown-item"
+                               th:href="@{'/products/'+${c.name}}">
+                                [[${c.name}]]
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Search -->
+            <form class="d-flex me-4"
+                  th:action="@{/search}"
+                  method="get">
+                <input class="form-control rounded-pill px-4 border-0 shadow-sm"
+                       type="search"
+                       name="keyword"
+                       placeholder="Search Product"
+                       required>
+                <button class="btn btn-warning rounded-circle ms-2 shadow-sm">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <!-- Right Menu -->
+            <ul class="navbar-nav align-items-center">
+                <!-- Login -->
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link fw-semibold px-3" href="/login">
+                        <i class="fa-solid fa-right-to-bracket me-1"></i>
+                        Login
+                    </a>
+                </li>
+                <!-- Register -->
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link fw-semibold px-3" href="/register">
+                        <i class="fa-solid fa-user-plus me-1"></i>
+                        Register
+                    </a>
+                </li>
+                <!-- Wishlist -->
+<!--                <li class="nav-item" sec:authorize="hasRole('USER')">-->
+<!--                   <a class="nav-link fw-semibold px-3" th:href="@{/user/wishlist}">-->
+<!--                        <i class="fa-solid fa-heart text-danger me-1"></i>-->
+<!--                        Wishlist-->
+<!--                    </a>-->
+<!--                </li>-->
+
+                <!-- Cart -->
+<!--                <li class="nav-item" sec:authorize="hasRole('USER')">-->
+<!--                   <a class="nav-link fw-semibold px-3" th:href="@{/user/cart}">-->
+<!--                        <i class="fa-solid fa-cart-shopping me-1"></i>-->
+<!--                        Cart-->
+<!--                    </a>-->
+<!--                </li>-->
+
+                <!-- My Orders -->
+<!--                <li class="nav-item" sec:authorize="hasRole('USER')">-->
+<!--                    <a class="nav-link fw-semibold px-3" th:href="@{/user/my-orders}">-->
+<!--                        <i class="fa-solid fa-box me-1"></i>-->
+<!--                        My Orders-->
+<!--                    </a>-->
+<!--                </li>-->
+
+                <!-- Logged User -->
+                <li class="nav-item dropdown"
+                    sec:authorize="hasRole('USER')">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+
+                        <img th:src="${loggedUser.profileImage}"
+                             width="42"
+                             height="42"
+                             class="rounded-circle border border-white me-2 shadow-sm"
+                             style="object-fit:cover;">
+
+                        <span th:text="${loggedUser.name}"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4">
+                        <li>
+                            <a class="dropdown-item"
+                               href="/user/profile">
+                                <i class="fa-solid fa-user"></i>
+                                My Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="/user/my-orders">
+                                <i class="fa-solid fa-box"></i>
+                                My Orders
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="/user/wishlist">
+                                <i class="fa-solid fa-heart text-danger"></i>
+                                Wishlist
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="/user/cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Cart
+                            </a>
+
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger"
+                               href="/logout">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Admin -->
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link fw-semibold px-3" th:href="@{/admin/}">
+                        <i class="fa-solid fa-user-shield me-1"></i>
+                        Admin
+                    </a>
+                </li>
+
+                <!-- Logout for Admin -->
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link fw-semibold px-3" href="/logout">
+                        <i class="fa-solid fa-right-from-bracket me-1"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= NAVBAR END ================= -->
+
+<!-- ================= PAGE CONTENT ================= -->
+
+<div class="container-fluid p-0" style="margin-top:80px;">
+    <div th:replace="${content}"></div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img th:src="@{/img/logo/novacart-logo.png}"
+                     width="80"
+                     height="80"
+                     class="mb-3">
+                <h4 class="fw-bold text-white">NovaCart</h4>
+                <p class="text-light">
+                    Your trusted online shopping destination.
+                    Shop quality products with secure payment
+                    and fast delivery.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h5 class="text-white mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/"
+                           class="footer-link">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/products"
+                           class="footer-link">
+                            Products
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/login"
+                           class="footer-link">
+                            Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/register"
+                           class="footer-link">
+                            Register
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- Customer Care -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-white mb-3">
+                    Customer Care
+                </h5>
+                <p class="text-light mb-2">
+                    <i class="fa-solid fa-phone me-2"></i>
+                    +91 7797709660
+                </p>
+                <p class="text-light mb-2">
+                    <i class="fa-solid fa-envelope me-2"></i>
+                    enzamulhossain04@gmail.com
+                </p>
+                <p class="text-light">
+                    <i class="fa-solid fa-location-dot me-2"></i>
+                    Barasat, Kolkata
+                </p>
+            </div>
+            <!-- Social -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-white mb-3">
+                    Follow Us
+                </h5>
+                <a href="#"
+                   class="social-icon">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#"
+                   class="social-icon">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#"
+                   class="social-icon">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="#"
+                   class="social-icon">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+        <hr class="border-light">
+        <div class="text-center text-light">
+            © 2026 NovaCart. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+<!-- ================= JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

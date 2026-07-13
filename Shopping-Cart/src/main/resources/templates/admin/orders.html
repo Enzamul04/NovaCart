@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+
+<body>
+<section>
+    <div class="container mt-5">
+        <h2 class="text-center">All Orders</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td>[[${order.orderId}]]</td>
+                <td>[[${order.user.name}]]</td>
+                <td>[[${order.product.title}]]</td>
+                <td>[[${order.quantity}]]</td>
+                <td>₹ [[${order.totalPrice}]]</td>
+                <td>
+<span class="badge bg-warning">
+[[${order.status}]]
+</span>
+                </td>
+                <td>
+                    <form action="/admin/update-order-status">
+                        <input type="hidden"
+                               name="id"
+                               th:value="${order.id}">
+                        <select class="form-select"
+                                name="status">
+                            <option>Ordered</option>
+                            <option>Packed</option>
+                            <option>Shipped</option>
+                            <option>Out For Delivery</option>
+                            <option>Delivered</option>
+                            <option>Cancelled</option>
+                        </select>
+                        <button
+                                class="btn btn-success btn-sm mt-2">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

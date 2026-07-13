@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<!--Start Slider-->
+<section>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <div id="heroSlider"
+         class="carousel slide carousel-fade"
+         data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <a href="/products">
+                    <img th:src="@{/img/ecom1.png}"
+                         class="hero-banner d-block w-100"
+                         alt="NovaCart Banner">
+                </a>
+            </div>
+
+            <!-- Slide 2 -->
+
+            <div class="carousel-item">
+                <a href="/products/Electronics">
+                    <img th:src="@{/img/Ecom2.png}"
+                         class="hero-banner d-block w-100"
+                         alt="Electronics Banner">
+                </a>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <a href="/products/Beauty">
+                    <img th:src="@{/img/Woman.png}"
+                         class="hero-banner d-block w-100"
+                         alt="Beauty Banner">
+                </a>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev"
+                data-bs-target="#heroSlider"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next"
+                data-bs-target="#heroSlider"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <!-- ================= CATEGORY ================= -->
+
+    <div class="container mt-2">
+        <h2 class="text-center fw-bold mb-5">🛍 Category</h2>
+        <div class="row justify-content-center g-4">
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Electronics" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/ELC.png"
+                                 class="category-img"
+                                 alt="Electronics">
+                            <h6 class="fw-bold mt-3">Electronics</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Beauty" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/Beauty.png"
+                                 class="category-img"
+                                 alt="Beauty">
+                            <h6 class="fw-bold mt-3">Beauty</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Clothes" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/Clothes.png"
+                                 class="category-img"
+                                 alt="Clothes">
+                            <h6 class="fw-bold mt-3">Clothes</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Laptop" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/Laptop.png"
+                                 class="category-img"
+                                 alt="Laptop">
+                            <h6 class="fw-bold mt-3">Laptop</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Mobile" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/Mobile.png"
+                                 class="category-img"
+                                 alt="Mobile">
+                            <h6 class="fw-bold mt-3">Mobile</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <a href="/products/Grocery" class="text-decoration-none text-dark">
+                    <div class="card category-card h-100">
+                        <div class="card-body text-center">
+                            <img src="/img/category_img/Grocery.png"
+                                 class="category-img"
+                                 alt="Grocery">
+                            <h6 class="fw-bold mt-3">Grocery</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= LATEST PRODUCTS ================= -->
+
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center fw-bold mb-5">
+            🔥 Latest Products
+        </h2>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6"
+                 th:each="p : ${products}">
+                <div class="card product-card h-100">
+                    <div class="position-relative">
+                        <img th:src="${p.image}"
+                             class="product-img"
+                             alt="Product">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">
+                        [[${p.discount}]]% OFF
+                    </span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold">[[${p.title}]]</h5>
+                        <p class="text-muted">[[${p.category}]]</p>
+                        <h5 class="text-primary">₹ [[${#numbers.formatDecimal(p.discountPrice,1,2)}]]</h5>
+                        <p>
+                        <span class="text-decoration-line-through text-secondary">
+                            ₹ [[${p.price}]]
+                        </span>
+                        </p>
+                        <a th:href="@{'/product/' + ${p.id}}"
+                           class="btn btn-primary rounded-pill px-4">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

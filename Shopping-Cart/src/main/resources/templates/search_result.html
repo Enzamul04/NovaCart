@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>search_result</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <h3 class="text-center mb-4">
+            Search Result :
+            <span th:text="${keyword}"></span>
+        </h3>
+        <div class="row">
+            <div class="col-md-3 mb-4"
+                 th:each="p : ${products}">
+                <div class="card shadow">
+                    <img th:src="${p.image}"
+                         height="220">
+                    <div class="card-body text-center">
+                        <h5>[[${p.title}]]</h5>
+                        <p class="text-success">
+                            ₹ [[${p.discountPrice}]]
+                        </p>
+                        <a th:href="@{'/product/' + ${p.id}}"
+                           class="btn btn-primary">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center"
+             th:if="${#lists.isEmpty(products)}">
+            <h3 class="text-danger">
+                No Product Found
+            </h3>
+        </div>
+    </div>
+</section>
+</body>
+</html>

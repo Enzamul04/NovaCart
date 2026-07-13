@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card shadow">
+                    <div class="card-header text-center">
+                        <h4>Verify OTP</h4>
+                    </div>
+                    <div class="card-body">
+                        <th:block th:if="${errorMsg}">
+                            <p class="text-danger text-center fw-bold"
+                               th:text="${errorMsg}">
+                            </p>
+                        </th:block>
+                        <th:block th:if="${succMsg}">
+                            <p class="text-success text-center fw-bold"
+                               th:text="${succMsg}">
+                            </p>
+                        </th:block>
+                        <form th:action="@{/verify-otp}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Enter OTP</label>
+                                <input
+                                        type="text"
+                                        name="otp"
+                                        class="form-control text-center fw-bold fs-4"
+                                        placeholder="------"
+                                        maxlength="6"
+                                        minlength="6"
+                                        autocomplete="off"
+                                        required>
+                            </div>
+                            <button
+                                    type="submit"
+                                    class="btn btn-success w-100">Verify OTP</button>
+                        </form>
+
+                        <div class="text-center mt-3">
+                            <a th:href="@{/resend-login-otp}"
+                               class="btn btn-link">
+                                Resend OTP
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

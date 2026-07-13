@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_coupon</title>
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Edit Coupon</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="/admin/updateCoupon"
+                              method="post">
+                            <input type="hidden"
+                                   name="id"
+                                   th:value="${coupon.id}">
+                            <div class="mb-3">
+                                <label>Coupon Code</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="couponCode"
+                                       th:value="${coupon.couponCode}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Discount</label>
+                                <input type="number"
+                                       class="form-control"
+                                       name="discount"
+                                       th:value="${coupon.discount}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Minimum Amount</label>
+                                <input type="number"
+                                       class="form-control"
+                                       name="minimumAmount"
+                                       th:value="${coupon.minimumAmount}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Expiry Date</label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="expiryDate"
+                                       th:value="${coupon.expiryDate}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Status</label>
+                                <select class="form-control"
+                                        name="active"
+                                    <option value="true" th:selected="${coupon.active}">Active</option>
+                                    <option value="false" th:selected="${!coupon.active}">Inactive</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-success w-100">Update Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

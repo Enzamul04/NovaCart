@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/base::layout(~{::section})}">
+
+<body>
+<section>
+    <div class="container mt-5">
+        <h3 class="text-center">All Users</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td>[[${user.id}]]</td>
+                <td>[[${user.name}]]</td>
+                <td>[[${user.email}]]</td>
+                <td>[[${user.mobileNumber}]]</td>
+                <td>[[${user.role}]]</td>
+                <td>
+<span th:if="${user.accountNonLocked}" class="badge bg-success">Active</span>
+ <span th:unless="${user.accountNonLocked}" class="badge bg-danger">Locked</span>
+                </td>
+                <td>
+                    <a th:if="${user.accountNonLocked}"
+                       th:href="@{'/admin/update-status?id='+${user.id}+'&status=false'}"
+                       class="btn btn-danger btn-sm">Lock</a>
+                    <a th:unless="${user.accountNonLocked}"
+                       th:href="@{'/admin/update-status?id='+${user.id}+'&status=true'}"
+                       class="btn btn-success btn-sm">Unlock</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

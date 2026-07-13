@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>wishlist</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <h3 class="text-center">My Wishlist</h3>
+        <table class="table">
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="w : ${wishlists}">
+                <td>
+                    <img th:src="@{${w.product.image}}"
+                         width="90"
+                         height="90"
+                         class="rounded"
+                         style="object-fit:cover;">
+                </td>
+                <td>[[${w.product.title}]]</td>
+                <td>₹ [[${w.product.discountPrice}]]</td>
+                <td>
+                    <a th:href="@{'/user/addCart?pid=' + ${w.product.id}}"
+                       class="btn btn-success">Move To Cart</a>
+                    <a th:href="@{'/user/removeWishlist?id=' + ${w.id}}"
+                       class="btn btn-danger">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>

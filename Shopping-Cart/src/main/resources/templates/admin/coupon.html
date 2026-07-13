@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>coupon</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid p-4">
+        <div class="row">
+            <!-- Add Coupon -->
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h4>Add Coupon</h4>
+                    </div>
+                    <div class="card-body">
+                        <th:block th:if="${succMsg}">
+                            <p class="text-success fw-bold text-center"
+                               th:text="${succMsg}">
+                            </p>
+                        </th:block>
+                        <form action="/admin/saveCoupon" method="post">
+                            <div class="mb-3">
+                                <label>Coupon Code</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="couponCode"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Discount (%)</label>
+                                <input type="number"
+                                       class="form-control"
+                                       name="discount"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Minimum Amount</label>
+                                <input type="number"
+                                       class="form-control"
+                                       name="minimumAmount"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Expiry Date</label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="expiryDate"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Status</label>
+                                <select class="form-control"
+                                        name="active">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-success w-100">Save Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon List -->
+
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Coupon List</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Discount</th>
+                                <th>Minimum</th>
+                                <th>Expiry</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="c : ${coupons}">
+                                <td>[[${c.id}]]</td>
+                                <td>[[${c.couponCode}]]</td>
+                                <td>[[${c.discount}]]%</td>
+                                <td>₹ [[${c.minimumAmount}]]</td>
+                                <td>[[${c.expiryDate}]]</td>
+                                <td>
+                               <span class="badge bg-success" th:if="${c.active}">Active</span>
+                                    <span class="badge bg-danger" th:unless="${c.active}">Inactive</span>
+                                </td>
+
+                                <td>
+                                    <a th:href="@{'/admin/editCoupon/' + ${c.id}}"
+                                       class="btn btn-primary btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <a th:href="@{'/admin/deleteCoupon/' + ${c.id}}"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Home</title>
+</head>
+<body>
+<section class="container mt-5">
+    <div class="card shadow-lg border-0 mt-4">
+        <div class="card-body text-center p-5">
+
+            <img th:src="@{/img/logo/novacart-logo.png}"
+                 alt="NovaCart Logo"
+                 width="130"
+                 class="mb-3">
+
+            <h1 class="fw-bold text-primary">
+                Welcome,
+                <span th:text="${loggedUser.name}"></span>
+            </h1>
+
+            <h5 class="text-secondary">
+                Happy Shopping 😊
+            </h5>
+
+            <p class="text-muted mt-3">
+                Discover amazing deals and enjoy your shopping experience with NovaCart.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

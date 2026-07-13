@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<section>
+    <div class="container-fluid p-4">
+
+        <div class="card card-sh">
+            <div class="card-header text-center">
+                <p class="fs-4">View Products</p>
+
+                <th:block th:if="${succMsg}">
+                    <p class="text-success fw-bold fs-5"
+                       th:text="${succMsg}">
+                    </p>
+                </th:block>
+
+                <th:block th:if="${errorMsg}">
+                    <p class="text-danger fw-bold fs-5"
+                       th:text="${errorMsg}">
+                    </p>
+                </th:block>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Discount Price</th>
+                        <th>Status</th>
+                        <th>Stock</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="p,c:${products}">
+                        <td>[[${c.count}]]</td>
+
+                        <td>
+                            <img th:src="${p.image}" width="70" height="70"
+                                 class="img-thumbnail">
+                        </td>
+
+                        <td>[[${p.title}]]</td>
+                        <td>[[${p.category}]]</td>
+                        <td>₹ [[${p.price}]]</td>
+                        <td>₹ [[${p.discount}]]</td>
+                        <td>₹ [[${p.discountPrice}]]</td>
+                        <td>₹ [[${p.isActive}]]</td>
+                        <td>[[${p.stock}]]</td>
+                        <td>
+                            <a th:href="@{'/admin/editProduct/' + ${p.id}}"
+                               class="btn btn-sm btn-primary">
+                                Edit
+                            </a>
+                            <a th:href="@{'/admin/deleteProduct/' + ${p.id}}"
+                               class="btn btn-sm btn-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

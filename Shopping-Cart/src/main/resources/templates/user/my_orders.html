@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<body>
+<section>
+    <div class="container mt-5">
+        <h2 class="text-center">My Orders</h2>
+        <table class="table table-bordered mt-4">
+            <thead>
+            <tr>
+            <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td>[[${order.orderId}]]</td>
+                <td>[[${order.product.title}]]</td>
+                <td>[[${order.quantity}]]</td>
+                <td>₹ [[${order.totalPrice}]]</td>
+                <td>
+<span class="badge bg-warning">[[${order.status}]]</span>
+                </td>
+                <td>[[${order.orderDate}]]</td>
+                <td>
+                    <a th:href="@{'/user/invoice?orderId=' + ${order.id}}"
+                       class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        Download Invoice
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
