@@ -8,7 +8,7 @@ email notification, Cloudinary integration, and separate Admin and User panels.
 
 #Features
 
-1.User Registration
+*User Registration
 2.Secure Login using Spring Security
 3.Login OTP Verification
 4.Forgot Password using Email OTP
