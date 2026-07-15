@@ -7,6 +7,7 @@ It provides secure authentication, shopping cart, wishlist, coupon management, o
 email notification, Cloudinary integration, and separate Admin and User panels.
 
 #Features
+
 1.User Registration
 2.Secure Login using Spring Security
 3.Login OTP Verification
