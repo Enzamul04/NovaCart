@@ -139,9 +139,9 @@
 
                         <h5>
                             Grand Total
-                            <span class="float-end"
-                                  id="grandTotal">
-        ₹ [[${grandTotal >= 200 ? grandTotal : grandTotal + 50}]]</span>
+                            <span class="float-end" id="grandTotal">
+    ₹ [[${#numbers.formatDecimal(grandTotal >= 200 ? grandTotal : grandTotal + 50, 1, 2)}]]
+                            </span>
                         </h5>
 
 <!--                        <a href="/user/placeOrder"-->
@@ -178,7 +178,7 @@
         msg.innerHTML="Coupon Applied";
         msg.className="text-success fw-bold";
         document.getElementById("grandTotal")
-        .innerHTML = "₹ " + result.total;
+.innerHTML = "₹ " + parseFloat(result.total).toFixed(2);
         }else{
         msg.innerHTML=result.message;
         msg.className="text-danger fw-bold";
