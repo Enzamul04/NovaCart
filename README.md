@@ -1,6 +1,7 @@
 # 🛒 NovaCart
 
 #Description
+
 NovaCart is a Full Stack E-Commerce Web Application developed using Java Spring Boot following the MVC architecture.
 It provides secure authentication, shopping cart, wishlist, coupon management, order management, invoice generation, 
 email notification, Cloudinary integration, and separate Admin and User panels.
