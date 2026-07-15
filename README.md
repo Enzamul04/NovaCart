@@ -9,25 +9,25 @@ email notification, Cloudinary integration, and separate Admin and User panels.
 #Features
 
 *User Registration
-2.Secure Login using Spring Security
-3.Login OTP Verification
-4.Forgot Password using Email OTP
-5.Product Management
-6.Category Management
-7.Shopping Cart
-8.Wishlist
-9.Buy Now
-10.Coupon & Discount System
-11.Order Management
-12.Invoice PDF Generation
-13.Order Confirmation Email
-14.Cloudinary Image Upload
-15.Profile Management
-16.Change Password
-17.Product Search
-18.Dynamic Latest Products
-19.Responsive UI
-20.Separate Admin & User Dashboard
+*Secure Login using Spring Security
+*Login OTP Verification
+*Forgot Password using Email OTP
+*Product Management
+*Category Management
+*Shopping Cart
+*Wishlist
+*Buy Now
+*Coupon & Discount System
+*Order Management
+*Invoice PDF Generation
+*Order Confirmation Email
+*Cloudinary Image Upload
+*Profile Management
+*Change Password
+*Product Search
+*Dynamic Latest Products
+*Responsive UI
+*Separate Admin & User Dashboard
 
 #Technology Stack
 
