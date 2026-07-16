@@ -131,7 +131,7 @@ src
 
 ## Future Enhancements
  
-*Razorpay Payment Gateway
+- Razorpay Payment Gateway
 *JWT Authentication
 *Docker Deployment
 *Microservices Architecture
