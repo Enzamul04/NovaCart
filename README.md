@@ -132,12 +132,12 @@ src
 ## Future Enhancements
  
 - Razorpay Payment Gateway
-*JWT Authentication
-*Docker Deployment
-*Microservices Architecture
-*Redis Cache
-*Product Recommendation System
-*Admin Analytics Dashboard
+- JWT Authentication
+- Docker Deployment
+- Microservices Architecture
+- Redis Cache
+- Product Recommendation System
+- Admin Analytics Dashboard
 
 ## Author
 
