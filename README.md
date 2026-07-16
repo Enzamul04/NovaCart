@@ -1,12 +1,12 @@
 # 🛒 NovaCart
 
-#Description
+## Description
 
 NovaCart is a Full Stack E-Commerce Web Application developed using Java Spring Boot following the MVC architecture.
 It provides secure authentication, shopping cart, wishlist, coupon management, order management, invoice generation, 
 email notification, Cloudinary integration, and separate Admin and User panels.
 
-#Features
+## Features
 
 *User Registration
 *Secure Login using Spring Security
@@ -29,7 +29,7 @@ email notification, Cloudinary integration, and separate Admin and User panels.
 *Responsive UI
 *Separate Admin & User Dashboard
 
-#Technology Stack
+## Technology Stack
 
 //Backend
 Java,Spring Boot,Spring MVC,Spring Security,Spring Data JPA,Hibernate
@@ -97,7 +97,17 @@ Browser=>Controller=>Service=>Repository=>MySQL Database
 ## Admin Dashboard (Analytics)
 ![Admin Dashboard 2](screenshots/admin-dashboard2.png)
 
-#Installation Guide
+
+## Configuration
+
+Update the following before running the application:
+
+- MySQL Database Credentials
+- Gmail App Password
+- Cloudinary API Credentials
+- Razorpay API Credentials
+
+## Installation Guide
 1. Clone the repository
 2. Open in IntelliJ IDEA
 3. Configure MySQL Database
@@ -106,7 +116,7 @@ Browser=>Controller=>Service=>Repository=>MySQL Database
 6. Start the Spring Boot application
 7. Open http://localhost:8080
 
- #Folder Structure  
+## Folder Structure  
 src
  | controller
  |service
@@ -119,7 +129,7 @@ src
  |static
 
 
- #Future Enhancements
+## Future Enhancements
  
 *Razorpay Payment Gateway
 *JWT Authentication
@@ -129,7 +139,7 @@ src
 *Product Recommendation System
 *Admin Analytics Dashboard
 
-#Author
+## Author
 
 Developed By
 Enzamul Hossain Sardar
